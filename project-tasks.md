@@ -1,7 +1,7 @@
 Here's a list of the essential functionalities of our project to track progress:
 
 **User Authentication and Profiles:**
-- [] User registration and email verification
+- [ ] User registration and email verification
 - [ ] User login and authentication
 - [ ] User profile creation and management
 - [ ] Password reset functionality
