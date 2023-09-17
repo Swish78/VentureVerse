@@ -1,7 +1,5 @@
 <h1>VentureVerse</h1>
 
-**Description:**
-
 VentureVerse isn't just a project; it's an invitation to embark on an extraordinary journey through the cosmos of startups. This electrifying web application redefines the way startups and visionary individuals collide, collaborate, and create the next big tech phenomena.
 
 **Why Venture Into VentureVerse? 🌌**
