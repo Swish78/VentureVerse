@@ -6,5 +6,15 @@
     <h1>Welcome to VentureVerse</h1>
     <p>Your platform for connecting startups and jobseekers in the tech industry.</p>
 
-    <!-- Add more content specific to homepage here -->
+    <div>
+        <h2>Get Started</h2>
+        <p>Choose an option:</p>
+        <form method="post" action="{% url 'accounts-register' %}">
+            {% csrf_token %}
+            <button type="submit">Register</button>
+            <input type="hidden" name="role" value="employee">
+        </form>
+
+        <p>Already have an account? <a href="{% url 'accounts-login' %}">Login</a></p>
+    </div>
 {% endblock %}
