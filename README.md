@@ -31,7 +31,7 @@ VentureVerse thrives on the contributions of its intergalactic community. Whethe
 
 **License: Cosmic Commons 🌌**
 
-VentureVerse is released under the [Your License Name] License. To delve into the legalities of our cosmic journey, navigate to the LICENSE file.
+VentureVerse is released under the MIT License. To delve into the legalities of our cosmic journey, navigate to the LICENSE file.
 
 Ready to explore the uncharted realms of startups? Venture into VentureVerse, and let the cosmic adventure begin! 🌟
 
