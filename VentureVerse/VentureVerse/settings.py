@@ -17,6 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR1 = os.path.join(BASE_DIR,'accounts/templates/accounts')
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -61,7 +62,7 @@ ROOT_URLCONF = "VentureVerse.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [TEMPLATE_DIR1,],
+        "DIRS": [TEMPLATE_DIR1,TEMPLATE_DIR2],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
