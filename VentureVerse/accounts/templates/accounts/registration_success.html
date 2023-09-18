@@ -5,5 +5,6 @@
 {% block content %}
     <h1>Registration Successful</h1>
     <p>Your registration was successful. You can now log in and start using our platform.</p>
+    <p>You have successfully registered as a {{ request.session.selected_role }}.</p>
     <p><a href="{% url 'accounts-login' %}">Login</a></p>
 {% endblock %}

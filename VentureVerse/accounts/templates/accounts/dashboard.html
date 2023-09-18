@@ -21,6 +21,10 @@
             <p>Email: {{ user_data.email }}</p>
         {% endif %}
 
+        {% if user_data.selected_role %}
+            <p>Your selected role: {{ user_data.selected_role }}</p>
+        {% endif %}
+
         <!-- Role-specific content -->
         {% if user_data.selected_role %}
             <h2>Your Dashboard Content as {{ user_data.selected_role }}</h2>

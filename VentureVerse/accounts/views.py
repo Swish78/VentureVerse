@@ -25,6 +25,8 @@ def select_role(request):
         form = RoleSelectionForm(request.POST)
         if form.is_valid():
             role = form.cleaned_data['role']
+            # Store the selected role in the session
+            request.session['selected_role'] = role
             if role == 'employee':
                 return redirect('accounts-employee-registration')
             elif role == 'employer':
@@ -35,10 +37,12 @@ def select_role(request):
     return render(request, 'accounts/select_role.html', {'form': form})
 
 
+
 def employee_registration(request):
     if request.method == 'POST':
         form = EmployeeRegistrationForm(request.POST)
         if form.is_valid():
+            selected_role = request.session.get('selected_role')
             # Process and save employee registration data
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -71,6 +75,7 @@ def employer_registration(request):
     if request.method == 'POST':
         form = EmployerRegistrationForm(request.POST)
         if form.is_valid():
+            selected_role = request.session.get('selected_role')
             # Process and save employer registration data
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -120,21 +125,26 @@ def employer_registration(request):
 #
 #     return render(request, 'accounts-select_role.html', {'form': form})
 #
-# def register(request):
-#     if request.user.is_authenticated:
-#         # If the user is already authenticated, redirect to the dashboard
-#         return redirect('accounts-dashboard')
-#
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('accounts-select_role')
-#     else:
-#         form = UserCreationForm()
-#
-#     return render(request, 'accounts/register.html', {'form': form})
+def register(request):
+    if request.user.is_authenticated:
+        # If the user is already authenticated, redirect to the dashboard
+        return redirect('accounts-dashboard')
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+
+            # Store the selected role in the session
+            request.session['selected_role'] = request.POST.get('role')
+
+            return redirect('accounts-select_role')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'accounts/register.html', {'form': form})
+
 
 def dashboard(request):
     user = request.user
@@ -144,6 +154,8 @@ def dashboard(request):
         'first_name': user.first_name,
         'last_name': user.last_name,
     }
+    selected_role = request.session.get('selected_role')
+    user_data['selected_role'] = selected_role
 
     return render(request, 'accounts/dashboard.html', {'user_data': user_data})
 
@@ -162,6 +174,12 @@ def login_view(request):
 logout_view = LogoutView.as_view()
 
 def registration_success(request):
-    return render(request, 'accounts/registration_success.html')
+    # Retrieve the selected role from the session
+    selected_role = request.session.get('selected_role')
+    user_data = {
+        'selected_role': selected_role,
+    }
+    return render(request, 'accounts/registration_success.html', {'user_data': user_data})
+
 
 
