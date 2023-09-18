@@ -10,6 +10,10 @@
     <header>
         <nav>
             <!-- Add navigation menu here -->
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <a href="{% url 'accounts-logout' %}">Logout</a>
+            {% endif %}
         </nav>
     </header>
 

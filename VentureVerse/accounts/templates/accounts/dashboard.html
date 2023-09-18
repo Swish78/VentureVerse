@@ -5,11 +5,38 @@
 {% block content %}
     <h1>Welcome to Your Dashboard</h1>
 
-    
-    <p>Logged in as: {{ user.username }}</p>
-    
-    <h2>Your Dashboard Content</h2>
-    <p>Kal decide karenge yaha kya dalna hai</p>
+    {% if user.is_authenticated %}
+        <p>Logged in as: {{ user.username }}</p>
 
-    <p><a href="{% url 'accounts-logout' %}">Logout</a></p>
+        <!-- Display user-specific information -->
+        {% if user_data.first_name %}
+            <p>First Name: {{ user_data.first_name }}</p>
+        {% endif %}
+
+        {% if user_data.last_name %}
+            <p>Last Name: {{ user_data.last_name }}</p>
+        {% endif %}
+
+        {% if user_data.email %}
+            <p>Email: {{ user_data.email }}</p>
+        {% endif %}
+
+        <!-- Role-specific content -->
+        {% if user_data.selected_role %}
+            <h2>Your Dashboard Content as {{ user_data.selected_role }}</h2>
+
+            <!-- Add role-specific content here -->
+            {% if user_data.selected_role == 'employee' %}
+                <p>This is employee-specific content.</p>
+            {% elif user_data.selected_role == 'employer' %}
+                <p>This is employer-specific content.</p>
+            {% endif %}
+        {% else %}
+            <p>You haven't selected a role yet. <a href="{% url 'accounts-select_role' %}">Select your role</a></p>
+        {% endif %}
+
+        <p><a href="{% url 'accounts-logout' %}">Logout</a></p>
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
 {% endblock %}

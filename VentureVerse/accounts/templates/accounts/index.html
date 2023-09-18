@@ -4,17 +4,23 @@
 
 {% block content %}
     <h1>Welcome to VentureVerse</h1>
-    <p>Your platform for connecting startups and jobseekers in the tech industry.</p>
+    <p>Your platform for connecting startups and job seekers in the tech industry.</p>
 
-    <div>
-        <h2>Get Started</h2>
-        <p>Choose an option:</p>
-        <form method="post" action="{% url 'accounts-register' %}">
-            {% csrf_token %}
-            <button type="submit">Register</button>
-            <input type="hidden" name="role" value="employee">
-        </form>
+    <form method="post">
+<!--        {% csrf_token %}-->
+<!--        &lt;!&ndash; Include other form fields here if needed &ndash;&gt;-->
+<!--        <button type="submit">Submit</button>-->
+    </form>
 
-        <p>Already have an account? <a href="{% url 'accounts-login' %}">Login</a></p>
-    </div>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        {% if user_data.selected_role %}
+            <p>Your selected role: {{ user_data.selected_role }}</p>
+        {% else %}
+            <p>You haven't selected a role yet. <a href="{% url 'accounts-select_role' %}">Select your role</a></p>
+        {% endif %}
+    {% else %}
+        <p><a href="{% url 'accounts-select_role' %}">Register</a> or <a href="{% url 'accounts-login' %}">Login</a></p>
+    {% endif %}
+
 {% endblock %}
