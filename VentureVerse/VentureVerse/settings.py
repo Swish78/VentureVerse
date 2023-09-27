@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR1 = os.path.join(BASE_DIR,'accounts/templates/accounts')
+TEMPLATE_DIR2 = os.path.join(BASE_DIR,'jobs/templates/jobs')
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
 
 EXTENDED_APPS =[
     'accounts',
+    'jobs'
 ]
 
 INSTALLED_APPS+=EXTENDED_APPS

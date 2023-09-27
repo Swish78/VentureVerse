@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Listing - {{ job.title }}{% endblock %}
+
+{% block content %}
+  <h1>{{ job.title }}</h1>
+  <p><strong>Company:</strong> {{ job.company }}</p>
+  <p><strong>Location:</strong> {{ job.location }}</p>
+  <p><strong>Description:</strong></p>
+  <p>{{ job.description }}</p>
+
+  <h2>Skills Required:</h2>
+  <ul>
+    {% for skill in job.skills.all %}
+      <li>{{ skill }}</li>
+    {% empty %}
+      <li>No specific skills required.</li>
+    {% endfor %}
+  </ul>
+
+  <p><strong>Posted Date:</strong> {{ job.posted_date }}</p>
+
+  <!-- Add additional details or buttons for applying to the job, etc. -->
+{% endblock %}
